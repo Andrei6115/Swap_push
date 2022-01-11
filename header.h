@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrei <andrei@student.42.fr>              +#+  +:+       +#+        */
+/*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 16:52:57 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/08 07:07:11 by andrei           ###   ########.fr       */
+/*   Updated: 2022/01/11 17:23:40 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,14 @@ t_node		*search_node(t_circle *circle, int data_search);
 t_node		*take_node(t_circle *circle, int data_del);
 void		ft_qsort(int *array, int count);
 
+int			ft_swap(t_circle *circle);
+int			ft_rrotate(t_circle *circle);
+int			ft_rotate(t_circle *circle);
+int			ft_push(t_circle *src, t_circle *dest);
 t_circle	array_to_circle(int array[10000], int count);
+
+int			rule_reverse_rotate(t_circle *a, t_circle *b, char a_b_r);
+int			rule_rotate(t_circle *a, t_circle *b, char a_b_r);
+int			rule_push(t_circle	*a, t_circle *b, char a_b);
+int			rule_swap(t_circle	*a, t_circle *b, char a_b_s);
 #endif

@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 01:39:47 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/04 04:36:15 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/11 20:48:54 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,18 @@ int	ft_push(t_circle *src, t_circle *dest)
 	{
 		src->first = NULL;
 	}
-	if (src->size == 1)
+	else if (src->size == 1)
 	{
 		src->first = src->first->next;
 		src->first->next = NULL;
 		src->first->prev = NULL;
 	}
-	temp->prev->next = temp->next;
-	temp->next->prev = temp->prev;
+	else if (src->size > 2)
+	{
+		src->first = src->first->next;
+		temp->prev->next = temp->next;
+		temp->next->prev = temp->prev;
+	}
 	ft_push_node_front(temp, dest, 0);
 	return (1);
 }
