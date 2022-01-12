@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrei <andrei@student.42.fr>              +#+  +:+       +#+        */
+/*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 06:43:26 by andrei            #+#    #+#             */
-/*   Updated: 2022/01/08 07:40:43 by andrei           ###   ########.fr       */
+/*   Updated: 2022/01/12 11:46:51 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,23 @@ t_node	*take_node(t_circle *circle, int data_del)
 		circle->first = circle->first->next;
 	circle->size--;
 	return (ret);
+}
+
+void	ft_null(t_circle *circle)
+{
+	circle->first = NULL;
+	circle->size = 0;
+}
+
+t_node	*ft_new_node(int data)
+{
+	t_node	*new;
+
+	new = malloc(sizeof(t_node));
+	if (!new)
+		exit(2);
+	new->next = NULL;
+	new->prev = NULL;
+	new->data = data;
+	return (new);
 }

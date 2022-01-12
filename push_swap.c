@@ -6,35 +6,32 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 06:42:13 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/11 21:10:05 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/12 12:28:33 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-void	ft_null(t_circle *circle)
-{
-	circle->first = NULL;
-	circle->size = 0;
-}
-
-t_node	*ft_new_node(int data)
-{
-	t_node	*new;
-
-	new = malloc(sizeof(t_node));
-	if (!new)
-		exit(2);
-	new->next = NULL;
-	new->prev = NULL;
-	new->data = data;
-	return (new);
-}
 #include "test.h"
 
-void	sort_three_digit(t_circle *a)
+int	sort_three_digit(t_circle *a)
 {
+	int		i;
+	int		max;
+	t_node	*temp;
 
+	max = a->first->prev->data;
+	temp = a->first;
+	if (a->size != 3)
+		return (0);
+	while (max != temp->data)
+	{
+		if (temp->data > max)
+			max = temp->data;
+		temp = temp->next;
+	}
+	if (temp->next->data > temp->prev->data)
+		rule_swap(a, a, 'a');
+	return (1);
 }
 
 t_circle	part_one(t_circle *a, int min, int max, int mid)
@@ -62,6 +59,18 @@ t_circle	part_one(t_circle *a, int min, int max, int mid)
 	return (b);
 }
 
+void	turn_a_to_put_el_from_b(t_circle *a, int el)
+{
+	int	i;
+
+	i = 0;
+}
+
+int	b_to_a(t_circle *a, t_circle *b)
+{
+	
+}
+
 void	push_swap(int *buf, int count)
 {
 	t_circle	a;
@@ -72,14 +81,13 @@ void	push_swap(int *buf, int count)
 	print_circle(&a);
 	printf("\nb:");
 	print_circle(&b);
+	
 	ft_qsort(buf, count);
 	b = part_one(&a, buf[count - 1], buf[0], buf[count / 2]);
+	sort_three_digit(&a);
+	
 	printf("\na:");
 	print_circle(&a);
 	printf("\nb:");
 	print_circle(&b);
-//	ft_push_node_front(take_node(&b, buf[0]), &a, 1);
-//	ft_push_node_front(take_node(&b, buf[count / 2]), &a, 1);
-//	ft_push_node_front(take_node(&b, buf[count - 1]), &a, 1);
-//buf[0] - min, buf[count-1] - max, buf[count/2] - mid
 }
