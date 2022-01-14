@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 06:42:13 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/14 13:41:54 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/14 14:54:43 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	push_swap(int *buf, int count)
 {
 	t_circle	a;
 	t_circle	b;
+	t_node		*del;
 
 	if (count == 1)
 		return ;
@@ -110,4 +111,11 @@ void	push_swap(int *buf, int count)
 	b = part_one(&a, buf[count - 1], buf[0], buf[count / 2]);
 	sort_three_digit(&a);
 	b_to_a(&a, &b, buf[count - 1]);
+	while (a.first)
+	{
+		del = a.first;
+		a.first->prev->next = NULL;
+		a.first = a.first->next;
+		free(del);
+	}
 }

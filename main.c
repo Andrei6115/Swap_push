@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:06 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/14 14:22:49 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/14 14:54:51 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ int	checker_buf(int *buf, int size)
 int	main(int argc, char **argv)
 {
 	int	i;
-	int	buf[10000];
+	int	*buf;
 	int	size;
 
 	size = 0;
 	i = 1;
+	buf = malloc(sizeof(int) * (argc - 1));
 	if (argc < 2)
 	{
 		write (STDERR_FILENO, "Error\n", 6);
@@ -82,5 +83,6 @@ int	main(int argc, char **argv)
 	if (!checker_buf(buf, i))
 		return (0);
 	push_swap(buf, i);
+	free(buf);
 	return (0);
 }
