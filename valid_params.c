@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:32:39 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/04 05:20:19 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/14 13:33:25 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	max_int(char *str, int sign)
 	return (0);
 }
 
-static int	toi(char *str, int sign, int size)
+static int	toi(char *str, int sign)
 {
 	int	num;
 	int	i;
@@ -79,12 +79,17 @@ int	valid_int(char *str)
 		str++;
 	else
 		sign = 1;
+	if (!*str)
+	{
+		write (STDERR_FILENO, "Error\n", 6);
+		exit (1);
+	}
 	size_str = ft_strlen(str);
 	if (size_str > 10 || !only_digit(str)
 		|| (size_str == 10 && !max_int(str, sign)))
 	{
-		write (2, "Input error\n", 12);
-		exit (2);
+		write (STDERR_FILENO, "Error\n", 6);
+		exit (1);
 	}
-	return (toi(str, sign, size_str));
+	return (toi(str, sign));
 }

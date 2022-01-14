@@ -6,13 +6,14 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 16:52:57 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/11 17:23:40 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/14 13:22:01 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
 # include "libft/libft.h"
+# include <stdlib.h>
 
 typedef struct s_node
 {
@@ -29,7 +30,7 @@ typedef struct s_circle
 
 int			valid_int(char *str);
 void		ft_push_node_front(t_node *node, t_circle *dest, int back);
-void		push_swap(int buf[10000], int count);
+void		push_swap(int *buf, int count);
 void		ft_null(t_circle *circle);
 t_node		*ft_new_node(int data);
 t_node		*search_node(t_circle *circle, int data_search);

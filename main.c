@@ -3,54 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrei <andrei@student.42.fr>              +#+  +:+       +#+        */
+/*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:06 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/08 07:07:41 by andrei           ###   ########.fr       */
+/*   Updated: 2022/01/14 14:22:49 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "libft/libft.h"
 #include "header.h"
 
-// int	ft_isspace(char c)
-// {
-// 	return (c == ' ' || c == '\n' || c == '\t' || c == '\v'
-// 		|| c == '\f' || c == '\r');
-// }
+int	have_duplicate(int *buf, int size)
+{
+	int	i;
+	int	j;
 
-// int	separator(char *str, int buf[10000])
-// {
-// 	int		i;
-// 	int		size_str;
-// 	int		count;
-// 	char	*temp;
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (buf[i] == buf[j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
-// 	i = 0;
-// 	count = 0;
-// 	while (str[i])
-// 	{
-// 		size_str = 0;
-// 		while (ft_isspace(str[i] && str[i]))
-// 			i++;
-// 		while (str[i + size_str] && !ft_isscpace(str[i + size_str]))
-// 		{
-// 			size_str++;
-// 		}
-// 		if (size_str == 0)
-// 			exit (2);
-// 		temp = malloc(sizeof(char) * size_str);
-// 		if (!temp)
-// 			exit (2);
-// 		ft_strlcpy(temp, &str[i], size_str);
-// 		i += size_str;
-// 		count++;
-// 	}
-// 	return (count);
-// }
-#include "test.h"
+int	sorted(int *buf, int size)
+{
+	int	i;
+
+	i = 1;
+	while (i < size)
+	{
+		if (buf[i - 1] > buf[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	checker_buf(int *buf, int size)
+{
+	if (have_duplicate(buf, size))
+	{
+		write (STDERR_FILENO, "Error\n", 6);
+		return (0);
+	}
+	if (sorted(buf, size))
+	{
+		return (0);
+	}
+	return (1);
+}
 
 int	main(int argc, char **argv)
 {
@@ -60,14 +68,19 @@ int	main(int argc, char **argv)
 
 	size = 0;
 	i = 1;
+	if (argc < 2)
+	{
+		write (STDERR_FILENO, "Error\n", 6);
+		return (0);
+	}
 	while (i < argc)
 	{
 		buf[size++] = valid_int(argv[i]);
-		printf("%d   ", valid_int(argv[i]));
-		printf("%d\n", atoi(argv[i]));
 		i++;
 	}
 	i--;
+	if (!checker_buf(buf, i))
+		return (0);
 	push_swap(buf, i);
 	return (0);
 }

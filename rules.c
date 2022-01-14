@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:34:51 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/11 17:12:01 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/14 14:11:32 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	rule_swap(t_circle	*a, t_circle *b, char a_b_s)
 	}
 	else
 		return (0);
-	write(1, "s", 1);
-	write(1, &a_b_s, 1);
-	write(1, "\n", 1);
+	write(STDOUT_FILENO, "s", 1);
+	write(STDOUT_FILENO, &a_b_s, 1);
+	write(STDOUT_FILENO, "\n", 1);
 	return (1);
 }
 
@@ -43,9 +43,9 @@ int	rule_push(t_circle	*a, t_circle *b, char a_b)
 		ft_push(a, b);
 	else
 		return (0);
-	write(1, "p", 1);
-	write(1, &a_b, 1);
-	write(1, "\n", 1);
+	write(STDOUT_FILENO, "p", 1);
+	write(STDOUT_FILENO, &a_b, 1);
+	write(STDOUT_FILENO, "\n", 1);
 	return (1);
 }
 
@@ -64,9 +64,9 @@ int	rule_rotate(t_circle *a, t_circle *b, char a_b_r)
 	}
 	else
 		return (0);
-	write(1, "r", 1);
-	write(1, &a_b_r, 1);
-	write(1, "\n", 1);
+	write(STDOUT_FILENO, "r", 1);
+	write(STDOUT_FILENO, &a_b_r, 1);
+	write(STDOUT_FILENO, "\n", 1);
 	return (1);
 }
 
@@ -85,9 +85,9 @@ int	rule_reverse_rotate(t_circle *a, t_circle *b, char a_b_r)
 	}
 	else
 		return (0);
-	write(1, "r", 1);
-	write(1, "r", 1);
-	write(1, &a_b_r, 1);
-	write(1, "\n", 1);
+	write(STDOUT_FILENO, "r", 1);
+	write(STDOUT_FILENO, "r", 1);
+	write(STDOUT_FILENO, &a_b_r, 1);
+	write(STDOUT_FILENO, "\n", 1);
 	return (1);
 }

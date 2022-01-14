@@ -6,16 +6,14 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 06:42:13 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/12 12:28:33 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/14 13:41:54 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-#include "test.h"
 
 int	sort_three_digit(t_circle *a)
 {
-	int		i;
 	int		max;
 	t_node	*temp;
 
@@ -40,7 +38,6 @@ t_circle	part_one(t_circle *a, int min, int max, int mid)
 	int			temp;
 
 	ft_null(&b);
-	printf("\nmin:%d, mid:%d, max:%d", min, mid, max);
 	while (a->size > 3)
 	{
 		temp = a->first->data;
@@ -61,14 +58,44 @@ t_circle	part_one(t_circle *a, int min, int max, int mid)
 
 void	turn_a_to_put_el_from_b(t_circle *a, int el)
 {
-	int	i;
+	int		i;
+	t_node	*temp;
 
 	i = 0;
+	temp = a->first;
+	while (!(temp->data > el && temp->prev->data < el))
+	{
+		i++;
+		temp = temp->next;
+	}
+	if (i > a->size / 2)
+	{
+		while (!(a->first->data > el && a->first->prev->data < el))
+		{
+			rule_reverse_rotate(a, a, 'a');
+		}
+	}
+	else
+	{
+		while (!(a->first->data > el && a->first->prev->data < el))
+		{
+			rule_rotate(a, a, 'a');
+		}
+	}
 }
 
-int	b_to_a(t_circle *a, t_circle *b)
+int	b_to_a(t_circle *a, t_circle *b, int min)
 {
-	
+	while (b->first)
+	{
+		turn_a_to_put_el_from_b(a, b->first->data);
+		rule_push(a, b, 'a');
+	}
+	while (a->first->data != min)
+	{
+		rule_rotate(a, b, 'a');
+	}
+	return (1);
 }
 
 void	push_swap(int *buf, int count)
@@ -76,18 +103,11 @@ void	push_swap(int *buf, int count)
 	t_circle	a;
 	t_circle	b;
 
+	if (count == 1)
+		return ;
 	a = array_to_circle(buf, count);
-	printf("\na:");
-	print_circle(&a);
-	printf("\nb:");
-	print_circle(&b);
-	
 	ft_qsort(buf, count);
 	b = part_one(&a, buf[count - 1], buf[0], buf[count / 2]);
 	sort_three_digit(&a);
-	
-	printf("\na:");
-	print_circle(&a);
-	printf("\nb:");
-	print_circle(&b);
+	b_to_a(&a, &b, buf[count - 1]);
 }
