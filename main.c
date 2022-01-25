@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:06 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/14 14:54:51 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/25 18:15:52 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 	{
 		write (STDERR_FILENO, "Error\n", 6);
-		return (0);
+		exit(0);
 	}
 	while (i < argc)
 	{
@@ -81,7 +81,7 @@ int	main(int argc, char **argv)
 	}
 	i--;
 	if (!checker_buf(buf, i))
-		return (0);
+		exit(0);
 	push_swap(buf, i);
 	free(buf);
 	return (0);

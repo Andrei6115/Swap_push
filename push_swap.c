@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 06:42:13 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/14 14:54:43 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/25 18:48:20 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,27 @@ void	turn_a_to_put_el_from_b(t_circle *a, int el)
 
 int	b_to_a(t_circle *a, t_circle *b, int min)
 {
+	t_node	*temp;
+	int		i;
+
 	while (b->first)
 	{
 		turn_a_to_put_el_from_b(a, b->first->data);
 		rule_push(a, b, 'a');
 	}
-	while (a->first->data != min)
+	temp = a->first;
+	i = 0;
+	while (temp->data != min)
 	{
-		rule_rotate(a, b, 'a');
+		i++;
+		temp = temp->next;
 	}
+	if (i > a->size / 2)
+		while (a->first->data != min)
+			rule_rotate(a, b, 'a');
+	else
+		while (a->first->data != min)
+			rule_reverse_rotate(a, b, 'a');
 	return (1);
 }
 
