@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 06:42:13 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/25 18:48:20 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/28 22:16:13 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ t_circle	part_one(t_circle *a, int min, int max, int mid)
 		if (temp > mid && temp != max && temp != min && temp != mid)
 		{
 			rule_push(a, &b, 'b');
-			rule_rotate(a, &b, 'b');
+			if (b.size > 1)
+				rule_rotate(a, &b, 'b');
 		}
 		else if (temp < mid && temp != max && temp != min && temp != mid)
 		{
@@ -86,13 +87,14 @@ void	turn_a_to_put_el_from_b(t_circle *a, int el)
 
 int	b_to_a(t_circle *a, t_circle *b, int min)
 {
+	int		min_rank;
 	t_node	*temp;
 	int		i;
 
-	while (b->first)
+	while (b->size > 0)
 	{
-		turn_a_to_put_el_from_b(a, b->first->data);
-		rule_push(a, b, 'a');
+		min_rank = set_rank(a, b);
+		push_el_with_min_rank(a, b, min_rank);
 	}
 	temp = a->first;
 	i = 0;
@@ -101,7 +103,7 @@ int	b_to_a(t_circle *a, t_circle *b, int min)
 		i++;
 		temp = temp->next;
 	}
-	if (i > a->size / 2)
+	if (i < a->size - i)
 		while (a->first->data != min)
 			rule_rotate(a, b, 'a');
 	else

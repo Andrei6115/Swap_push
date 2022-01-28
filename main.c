@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:06 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/25 18:15:52 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/28 20:42:38 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 	buf = malloc(sizeof(int) * (argc - 1));
 	if (argc < 2)
 	{
-		write (STDERR_FILENO, "Error\n", 6);
+		write (STDERR_FILENO, "No papams\n", 10);
 		exit(0);
 	}
 	while (i < argc)

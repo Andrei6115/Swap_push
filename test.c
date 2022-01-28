@@ -13,8 +13,9 @@ void	print_circle(t_circle *a)
 	}
 	do
 	{
-		printf("%d ", temp->data);
+		printf("%d(%d) ", temp->data, temp->rank);
 		temp = temp->next;
 	} while (temp && temp != a->first);
+	printf("\tsize: %d\n", a->size);
 }
 

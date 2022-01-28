@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 06:43:26 by andrei            #+#    #+#             */
-/*   Updated: 2022/01/12 11:46:51 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/28 18:13:18 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_node	*ft_new_node(int data)
 		exit(2);
 	new->next = NULL;
 	new->prev = NULL;
+	new->rank = 0;
 	new->data = data;
 	return (new);
 }
