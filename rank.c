@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:11:48 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/28 20:22:26 by calecia          ###   ########.fr       */
+/*   Updated: 2022/01/29 20:22:43 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,10 @@ void	push_el_with_min_rank(t_circle *a, t_circle *b, int min_rank)
 		count_rotate++;
 		temp = temp->next;
 	}
-	min_rotate_b(b, temp->data, count_rotate);
-	min_rotate_a(a, temp->data);
+	needed_double_rotate(a, b, min_rank);
+	if (b->first != temp)
+		min_rotate_b(b, temp->data, count_rotate);
+	if (!(a->first->data > temp->data && a->first->prev->data < temp->data))
+		min_rotate_a(a, temp->data);
 	rule_push(a, b, 'a');
 }
