@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 16:52:57 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/14 13:22:01 by calecia          ###   ########.fr       */
+/*   Updated: 2022/02/03 21:19:51 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_node
 	struct s_node	*next;
 	struct s_node	*prev;
 	int				data;
+	int				rank;
 }	t_node;
 
 typedef struct s_circle
@@ -47,4 +48,11 @@ int			rule_reverse_rotate(t_circle *a, t_circle *b, char a_b_r);
 int			rule_rotate(t_circle *a, t_circle *b, char a_b_r);
 int			rule_push(t_circle	*a, t_circle *b, char a_b);
 int			rule_swap(t_circle	*a, t_circle *b, char a_b_s);
+
+int			set_rank(t_circle *a, t_circle *b);
+void		push_el_with_min_rank(t_circle *a, t_circle *b, int min_rank);
+void		mini_sort(t_circle *a, int min, int max);
+
+int			needed_double_rotate(t_circle *a, t_circle *b, int min_rank);
+int			sort_three_digit(t_circle *a);
 #endif

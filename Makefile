@@ -1,32 +1,40 @@
-NAME	=   push_swap
+NAME 	=	push_swap
 HEADER  =   header.h
+SOURCES = 	valid_params.c \
+			main.c \
+			actions_1.c \
+			actions_2.c \
+			arrayFunc.c \
+			push_swap.c \
+			rank.c \
+			srank.c \
+			rules.c \
+			mini_sort.c \
+			test.c
 
-SRC_UTL = $(shell ls ./*.c) 
+OBJECTS = $(SOURCES:.c=.o)
 
-SRCS		=	$(SRC_UTL)
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-OBG		=	$(SRCS:%.c=%.o)
+all: $(NAME)
 
-CFLAGS	= -Wall -Wextra -Werror 
-RM		= rm -rf
-CC		= gcc
+$(NAME): $(OBJECTS) $(HEADER) libft
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) libft/libft.a
 
-all:			$(NAME)
+%.o: %.c
+	$(CC) -c $(CFLAGS) $?
 
-$(NAME):		${OBG} $(HEADER)
-				$(CC) $(CFLAGS)  -o $(NAME) ${OBG} libft/libft.a
-
-libft/libft.a:	
-				@$(MAKE) -C libft/
-%.o: 			%.c	
-				$(CC) $(CFLAGS) -I./ -c $< -o $@
-
-fclean:			clean
-				$(RM) $(NAME)
+libft:
+	make -C libft
 
 clean:
-				$(RM) ${OBG}
+	rm -f $(OBJECTS)
+	make -C libft clean
+	
+fclean: clean
+	rm -f $(NAME) libft/libft.a
 
-re:				fclean all
+re: fclean all
 
-.PHONY: clean fclean re all
+.PHONY: all libft clean fclean re

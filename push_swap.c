@@ -6,7 +6,7 @@
 /*   By: calecia <calecia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 06:42:13 by calecia           #+#    #+#             */
-/*   Updated: 2022/01/28 22:16:13 by calecia          ###   ########.fr       */
+/*   Updated: 2022/02/03 19:43:16 by calecia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,11 @@ void	push_swap(int *buf, int count)
 		return ;
 	a = array_to_circle(buf, count);
 	ft_qsort(buf, count);
+	if (a.size == 5)
+	{
+		mini_sort(&a, buf[count - 1], buf[0]);
+		return ;
+	}
 	b = part_one(&a, buf[count - 1], buf[0], buf[count / 2]);
 	sort_three_digit(&a);
 	b_to_a(&a, &b, buf[count - 1]);
